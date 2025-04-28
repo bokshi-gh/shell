@@ -1,0 +1,9 @@
+# Executables
+*.out
+*.exe
+
+# Build
+build/
+
+# Dist
+dist/
