@@ -7,6 +7,7 @@
 #include <pwd.h>
 #include <string.h>
 #include "macros.h"
+#include "command_handler.h"
 
 char *user_name;
 char *host_name;
@@ -68,6 +69,7 @@ int main(int argc, char *argv[]){
 
 	while(true){
 		prompt(command);
+		handle_command();
 	}
 
 	// cleanup() call clean function before program exist to avoid memory leaks
