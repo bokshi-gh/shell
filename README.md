@@ -44,8 +44,12 @@ This shell supports the following platforms:
 
 ## Configuration
 
-- Customize the prompt format by editing the source code or config files if implemented.
-- Environment variables like `PATH` affect command lookup.
+Since CMake installs the project binaries in the `dist/bin` directory at the project root, you may want to add this directory to your PATH environment variable to easily run the shell from anywhere:
+
+```sh
+export PATH="$(pwd)/dist/bin:$PATH"
+```
+Add the above line to your shell configuration file (e.g., ~/.bashrc or ~/.zshrc) to make it persistent..
 
 ## Usage
 
