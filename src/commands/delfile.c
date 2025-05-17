@@ -1,4 +1,6 @@
+#include <stdio.h>
 #include <unistd.h>
+#include <errno.h>
 #include "delfile.h"
 
 void delete_file(char *filename){

@@ -50,7 +50,11 @@ void prompt(char *command){
 }
 
 int main(int argc, char *argv[]){
-	handle_argument(argc, argv);
+
+	if(argc != 1){
+		handle_argument(argc, argv);
+		exit(0);
+	}
 
 	char command[MAX_COMMAND_LENGTH];
 	char *command_tokens[256];

@@ -11,7 +11,7 @@ void handle_argument(int argc, char *argv[]){
 		if(argc == 2){
 			if((strcmp(argv[1], "-v") == 0) || (strcmp(argv[1], "--version") == 0)){
 				printf("rumi %s\n", VERSION);
-				exit(0);
+				return;
 			}else if((strcmp(argv[1], "-i") == 0) || (strcmp(argv[1], "--info") == 0)){
 				display_info();
 			}else if((strcmp(argv[1], "-g") == 0) || (strcmp(argv[1], "--guide") == 0)){
@@ -19,14 +19,14 @@ void handle_argument(int argc, char *argv[]){
 			}else{
 				printf("rumi: Invalid argument \"%s\"\n", argv[1]);
 				printf("try: rumi -g or rumi --guide\n");
-				exit(1);
+				return;
 			}
 
-			exit(0);
+			return;
 		}else{
 			printf("rumi: Invalid arguments\n");
 			printf("Try: rumi -g or rumi --guide\n");
-			exit(1);
+			return;
 		}
 
 

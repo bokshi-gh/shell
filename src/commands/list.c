@@ -10,8 +10,8 @@ void list_directory(){
 	while((entry = readdir(d)) != NULL){
 		if((strcmp(entry->d_name, ".") == 0) || (strcmp(entry->d_name, "..") == 0)) continue;
 		
-		if(entry->d_type == DT_REG) printf("%s ", entry->d_name);
-		else printf("%s/ ", entry->d_name);
+		if(entry->d_type == DT_REG) printf("%s  ", entry->d_name);
+		else printf("%s/  ", entry->d_name);
 
 	}
 
