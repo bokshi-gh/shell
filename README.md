@@ -55,15 +55,15 @@ Add the above line to your shell configuration file (e.g., ~/.bashrc or ~/.zshrc
 
 - Run the shell by executing:
     ```sh
-    ./rumi
+    rumi
     ```
 - Inside the shell, enter commands as you would in a typical Unix shell.
 
 - Example:
     ```sh
-    ls -l
-    pwd
-    exit
+    <user_name>@<host_name>:<cwd>$ list
+    a b c d e f
+    <user_name>@<host_name>:<cwd>$
     ```
 
 ## Contributing
