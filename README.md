@@ -6,11 +6,14 @@ Rumi is a minimal shell created using C and C++ designed for Unix-like platforms
 
 ## Features
 
-- Basic command parsing and execution
-- Support for common Unix commands
-- Customizable prompt showing user, host, and current directory
-- Minimal external dependencies
-- Simple and clean codebase for learning and extension
+Rumi is a lightweight custom shell designed with core Unix-like functionality in mind. It provides:
+
+- Command support for file and folder management
+- Utilities for navigation
+- Built-in features for process management
+- Commands for network related task
+-  clean, extensible codebase ideal for learning or experimentation
+> Rumi is an independent shell implementation that uses the same underlying Unix system calls as traditional shells like Bash but is built entirely from scratch.
 
 ## Getting Started
 
