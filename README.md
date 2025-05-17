@@ -32,8 +32,8 @@ This shell supports the following platforms:
 
 1. **Clone the repository:**
     ```sh
-    git clone https://github.com/{{your-username}}/rumi.git
-    cd rumi
+    git clone https://github.com/devrajeshthapa/shell.git
+    cd shell
     ```
 
 2. **Build and install using the provided script:**
