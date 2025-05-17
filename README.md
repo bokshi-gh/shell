@@ -73,6 +73,11 @@ source ~/.bashrc
     file1 file2 file3 file3 file4 file5
     ```
 
+- Guide
+  ```sh
+  rumi -g or rumi --guide
+  ```
+
 ## Contributing
 
 Contributions are welcome! Please fork the repo, make changes, and submit pull requests. Open issues for bugs or feature requests.
