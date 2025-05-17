@@ -75,7 +75,7 @@ source ~/.bashrc
 
 - Guide
   ```sh
-  rumi -g or rumi --guide
+  rumi -g, --guide
   ```
 
 ## Contributing
