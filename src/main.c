@@ -5,6 +5,7 @@
 #include <limits.h>
 #include <errno.h>
 #include <pwd.h>
+#include <string.h>
 #include "macros.h"
 
 char *user_name;
@@ -45,6 +46,13 @@ void prompt(char *command){
 }
 
 int main(int argc, char *argv[]){
+	if(argc == 2){
+		if((strcmp(argv[1], "-v") == 0) || (strcmp(argv[1], "--version") == 0)){
+			printf("rumi %s\n", VERSION);
+			exit(0);
+		}
+	}
+
 	char command[MAX_COMMAND_LENGTH];
 	get_user_name();
 	if((host_name = malloc(HOST_NAME_MAX)) == NULL){ 
