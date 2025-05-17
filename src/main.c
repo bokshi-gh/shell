@@ -73,6 +73,6 @@ int main(int argc, char *argv[]){
 		handle_command(command, command_tokens);
 	}
 
-	// cleanup() call clean function before program exist to avoid memory leaks
+	// TODO: call cleanup() function before program exist to avoid memory leaks
 	return 0;
 }
