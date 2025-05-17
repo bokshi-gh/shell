@@ -46,6 +46,7 @@ void prompt(char *command){
 		perror("fgets");
 		exit(1);
 	}
+	command[strcspn(command, "\n")] = '\0'; // Remove trailing newline or whitespace
 }
 
 int main(int argc, char *argv[]){
@@ -69,7 +70,7 @@ int main(int argc, char *argv[]){
 	while(true){
 		prompt(command);
 		parse_command(command, command_tokens);
-		handle_command();
+		handle_command(command, command_tokens);
 	}
 
 	// cleanup() call clean function before program exist to avoid memory leaks

@@ -9,5 +9,5 @@ void parse_command(char command[], char *command_tokens[]){
 		command_tokens[index++] = token;
 		token = strtok(NULL, " ");
 	}
-	command_tokens[index] = "\n";
+	command_tokens[index] = NULL;
 }
