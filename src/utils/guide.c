@@ -2,11 +2,12 @@
 #include "guide.h"
 
 void display_guide(){
-	printf("\n\033[32m========== Rumi Guide ==========\033[0m\n");
+	printf("\n\033[32m==================== Rumi Guide ====================\033[0m\n");
 
 	printf("\n");
 
 	printf("Rumi CLI Commands:\n");
+	printf("  rumi -i, --info      Show information of rumi\n");
 	printf("  rumi -v, --version   Show version information\n");
 	printf("  rumi -g, --guide     Show this guide\n");
 	
