@@ -52,8 +52,9 @@ export PATH="$<path_to_project_directory>/dist/bin:$PATH"
 Add the above line to your shell configuration file (e.g., ~/.bashrc or ~/.zshrc) to make it persistent..
 
 ```sh
-source bashrc
+source ~/.bashrc
 ```
+Reload your bashrc
 
 ## Usage
 
