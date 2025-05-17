@@ -49,7 +49,7 @@ Since CMake installs the project binaries in the `dist/bin` directory at the pro
 ```sh
 export PATH="$<path_to_project_directory>/dist/bin:$PATH"
 ```
-Add the above line to your shell configuration file (e.g., ~/.bashrc or ~/.zshrc) to make it persistent..
+Add the above line to your shell configuration file (e.g., ~/.bashrc or ~/.zshrc) to make it persistent.
 
 ```sh
 source ~/.bashrc
