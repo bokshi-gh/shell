@@ -9,7 +9,7 @@ void handle_command(char command[], char *command_tokens[]) {
 		CLEAR_TERMINAL();
 		return;
 	}
-	else if ((strcmp(command_tokens[0], "exit") == 0) && command_tokens[1] == NULL) {
+	else if ((strcmp(command_tokens[0], "escape") == 0) && command_tokens[1] == NULL) {
 		// TODO: Add cleanup() if needed before exiting
 		exit(0);
 	} 
