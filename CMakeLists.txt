@@ -6,6 +6,6 @@ set(CMAKE_CXX_STANDARD 14)
 
 include_directories(include)
 
-add_executable(rumi src/main.c src/argument_handler.c src/command_handler.c)
+add_executable(rumi src/main.c src/argument_handler.c src/command_handler.c src/command_parser.c)
 
 install(TARGETS rumi RUNTIME DESTINATION bin)

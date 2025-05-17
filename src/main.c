@@ -7,6 +7,8 @@
 #include <pwd.h>
 #include <string.h>
 #include "macros.h"
+#include "argument_handler.h"
+#include "command_parser.h"
 #include "command_handler.h"
 
 char *user_name;
@@ -47,14 +49,11 @@ void prompt(char *command){
 }
 
 int main(int argc, char *argv[]){
-	if(argc == 2){
-		if((strcmp(argv[1], "-v") == 0) || (strcmp(argv[1], "--version") == 0)){
-			printf("rumi %s\n", VERSION);
-			exit(0);
-		}
-	}
+	handle_argument(argc, argv);
 
 	char command[MAX_COMMAND_LENGTH];
+	char *command_tokens[256];
+
 	get_user_name();
 	if((host_name = malloc(HOST_NAME_MAX)) == NULL){ 
 		perror("malloc");
@@ -69,6 +68,7 @@ int main(int argc, char *argv[]){
 
 	while(true){
 		prompt(command);
+		parse_command(command, command_tokens);
 		handle_command();
 	}
 
