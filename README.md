@@ -47,9 +47,13 @@ This shell supports the following platforms:
 Since CMake installs the project binaries in the `dist/bin` directory at the project root, you may want to add this directory to your PATH environment variable to easily run the shell from anywhere:
 
 ```sh
-export PATH="$(pwd)/dist/bin:$PATH"
+export PATH="$<path_to_project_directory>/dist/bin:$PATH"
 ```
 Add the above line to your shell configuration file (e.g., ~/.bashrc or ~/.zshrc) to make it persistent..
+
+```sh
+source bashrc
+```
 
 ## Usage
 
@@ -61,9 +65,8 @@ Add the above line to your shell configuration file (e.g., ~/.bashrc or ~/.zshrc
 
 - Example:
     ```sh
-    <user_name>@<host_name>:<cwd>$ list
-    a b c d e f
-    <user_name>@<host_name>:<cwd>$
+    <user_name>@<host_name>:<current_working_directory>$ list
+    file1 file2 file3 file3 file4 file5
     ```
 
 ## Contributing
