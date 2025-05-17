@@ -23,7 +23,7 @@ void display_guide(){
 	printf("  deldir  <dirname>  - Delete an empty directory with the given name\n");
 	printf("  print \"<text>\"   - Print the specified text to the terminal\n");
 	printf("  read <filename>    - Display the contents of the specified file\n");
-	printf("  goto <pathname>    - Change the current directory to the specified path\n);
+	printf("  goto <pathname>    - Change the current directory to the specified path\n");
 	printf("  <non_rumi_command> - Executed as a system command (e.g., ls, gcc, vim)\n");
 
 	printf("\n");
