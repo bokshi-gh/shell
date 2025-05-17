@@ -1,65 +1,70 @@
-# {{Project Name}}
+# Rumi
 
 ## Overview
 
-{{Brief description of what the project does, its purpose, and why it exists.}}
+Rumi is a minimal shell created using C and C++ designed for Unix-like platforms. It provides a simple command-line interface with essential shell functionalities, aiming to be lightweight and easy to extend.
 
 ## Features
 
-- {{Feature 1 description}}
-- {{Feature 2 description}}
-- {{Feature 3 description}}
-- {{Add more features as needed}}
+- Basic command parsing and execution
+- Support for common Unix commands
+- Customizable prompt showing user, host, and current directory
+- Minimal external dependencies
+- Simple and clean codebase for learning and extension
 
 ## Getting Started
 
 ### Platforms
 
-This project supports the following platforms:
+This shell supports the following platforms:
 
-- {{Platform 1 (e.g., Linux)}}
-- {{Platform 2 (e.g., macOS)}}
-- {{Platform 3 (e.g., Windows)}}
-- {{Add more platforms as needed}}
+- Linux
+- macOS
+- Unix-like systems
 
 ### Requirements
 
-- {{Requirement 1 (e.g., language version, tools, dependencies)}}
-- {{Requirement 2}}
-- {{Additional requirements}}
+- C and C++ compiler (e.g., gcc, clang)
+- CMake 3.28.3
+- Standard Unix development environment
 
 ### Installation
 
 1. **Clone the repository:**
     ```sh
-    git clone https://github.com/{{your-username}}/{{your-repo-name}}.git
-    cd {{your-repo-name}}
+    git clone https://github.com/{{your-username}}/rumi.git
+    cd rumi
     ```
 
-2. **Build or set up the project:**
+2. **Build and install using the provided script:**
     ```sh
-    {{build or setup commands here}}
+    ./scripts/build.sh
     ```
-
-3. **Install the project (if applicable):**
-    ```sh
-    {{installation commands here}}
-    ```
-    > Note: {{Notes about install location or directories}}
+    > Note: This script handles building and installing the project automatically.
 
 ## Configuration
 
-- {{How to configure the project if applicable}}
-- {{Environment variables or config files}}
+- Customize the prompt format by editing the source code or config files if implemented.
+- Environment variables like `PATH` affect command lookup.
 
 ## Usage
 
-- {{Demostration of project usage}}
-- {{...}}
+- Run the shell by executing:
+    ```sh
+    ./rumi
+    ```
+- Inside the shell, enter commands as you would in a typical Unix shell.
+
+- Example:
+    ```sh
+    ls -l
+    pwd
+    exit
+    ```
 
 ## Contributing
 
-If you want to contribute, please open an issue or submit a pull request.
+Contributions are welcome! Please fork the repo, make changes, and submit pull requests. Open issues for bugs or feature requests.
 
 ## License
 
