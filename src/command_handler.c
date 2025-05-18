@@ -10,6 +10,7 @@
 #include "delfile.h"
 #include "read.h"
 #include "goto.h"
+#include "deldir.h"
 
 void handle_command(char command[], char *command_tokens[]) {
 	if ((strcmp(command_tokens[0], "clean") == 0) && command_tokens[1] == NULL) {
@@ -53,6 +54,13 @@ void handle_command(char command[], char *command_tokens[]) {
 			return;
 		}
 		delete_file(command_tokens[1]);
+	}
+else if (strcmp(command_tokens[0], "deldir") == 0){
+		if(command_tokens[1] == NULL){
+			// TODO: Implement invalid arg error
+			return;
+		}
+		delete_directory(command_tokens[1]);
 	}
 	else if (strcmp(command_tokens[0], "read") == 0){
 		if(command_tokens[1] == NULL){
