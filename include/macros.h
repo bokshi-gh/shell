@@ -8,3 +8,9 @@
 
 #define MAX_COMMAND_LENGTH 4096
 #define CLEAR_TERMINAL() printf("\033[2J\033[H")
+
+//ANSI escape sequence
+#define GREEN "\033[0;32m"
+#define BLUE "\033[0;34m"
+#define RESET "\033[0m"
+

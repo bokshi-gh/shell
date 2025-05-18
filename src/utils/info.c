@@ -4,7 +4,6 @@
 
 void display_info(){
 	printf("\n");
-
 	printf(
 		"\t██████╗ ██╗   ██╗███╗   ███╗██╗\n"
 		"\t██╔══██╗██║   ██║████╗ ████║██║\n"
@@ -25,6 +24,4 @@ void display_info(){
 	printf("GitHub: %s\n", GITHUB);
 	printf("Description: %s\n", DESC);
 	printf("License: %s\n", LICENSE);
-
-	printf("\n");
 }

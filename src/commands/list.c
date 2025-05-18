@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <dirent.h>
+#include "macros.h"
 #include "list.h"
 
 void list_directory(){
@@ -10,8 +11,8 @@ void list_directory(){
 	while((entry = readdir(d)) != NULL){
 		if((strcmp(entry->d_name, ".") == 0) || (strcmp(entry->d_name, "..") == 0)) continue;
 		
-		if(entry->d_type == DT_REG) printf("%s  ", entry->d_name);
-		else printf("%s/  ", entry->d_name);
+		if(entry->d_type == DT_DIR) printf("%s%s/%s  ", GREEN, entry->d_name, RESET);
+		else printf("%s  ", entry->d_name);
 
 	}
 

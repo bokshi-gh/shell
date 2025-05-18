@@ -41,7 +41,8 @@ void get_cwd(){
 }
 
 void prompt(char *command){
-	printf("%s@%s:%s$ ", user_name, host_name, cwd);
+	printf("%s┌──(%s%s%s@%s%s%s)-[%s%s%s]\n└─%s%s➤%s ", GREEN, RESET, BLUE, user_name, host_name, RESET, GREEN, RESET, cwd, GREEN, RESET, BLUE, RESET);
+
 	if((fgets(command, MAX_COMMAND_LENGTH, stdin)) == NULL){
 		perror("fgets");
 		exit(1);
