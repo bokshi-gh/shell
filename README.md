@@ -69,7 +69,7 @@ source ~/.bashrc
 
 - Example:
     ```sh
-    ┌──(<user_name>@<host_name>)-[<current_wokring_directory>]
+    ┌──(<user_name>@<host_name>)-[<current_working_directory>]
     └─➤ list
     file1 file2 file3 file3 file4 file5
     ```
