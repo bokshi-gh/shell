@@ -15,4 +15,6 @@ void read_file(char *filename){
 		printf("%c", ch);
 	}
 
+	printf("\n");
+
 }
