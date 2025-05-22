@@ -12,7 +12,7 @@ Rumi is a lightweight custom shell designed with core Unix-like functionality in
 - Utilities for navigation
 - Built-in features for process management
 - Commands for network related task
--  clean, extensible codebase ideal for learning or experimentation
+- Clean, extensible codebase ideal for learning or experimentation
 > Rumi is an independent shell implementation that uses the same underlying Unix system calls as traditional shells like Bash but is built entirely from scratch.
 
 ## Getting Started
