@@ -11,6 +11,7 @@
 #include "read.h"
 #include "goto.h"
 #include "deldir.h"
+#include "curl.h"
 
 void handle_command(char command[], char *command_tokens[]) {
 	if ((strcmp(command_tokens[0], "clean") == 0) && command_tokens[1] == NULL) {
@@ -55,7 +56,7 @@ void handle_command(char command[], char *command_tokens[]) {
 		}
 		delete_file(command_tokens[1]);
 	}
-else if (strcmp(command_tokens[0], "deldir") == 0){
+	else if (strcmp(command_tokens[0], "deldir") == 0){
 		if(command_tokens[1] == NULL){
 			// TODO: Implement invalid arg error
 			return;
@@ -84,6 +85,14 @@ else if (strcmp(command_tokens[0], "deldir") == 0){
 			return;
 		}
 		printf("%s\n", command_tokens[1]);
+	}
+	else if (strcmp(command_tokens[0], "fetch") == 0){
+		if(command_tokens[1] == NULL){
+			// TODO: Implement invalid arg error
+			return;
+		}
+		curl(command_tokens[1]);
+		
 	}
 	// Fallback to executing system command if not handled internally
 	else {
