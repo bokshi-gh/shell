@@ -11,7 +11,7 @@
 #include "read.h"
 #include "goto.h"
 #include "deldir.h"
-#include "curl.h"
+// #include "curl.h"
 
 void handle_command(char command[], char *command_tokens[]) {
 	if ((strcmp(command_tokens[0], "clean") == 0) && command_tokens[1] == NULL) {
