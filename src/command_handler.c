@@ -91,7 +91,7 @@ void handle_command(char command[], char *command_tokens[]) {
 			// TODO: Implement invalid arg error
 			return;
 		}
-		curl(command_tokens[1]);
+		// curl(command_tokens[1]);
 		
 	}
 	// Fallback to executing system command if not handled internally
