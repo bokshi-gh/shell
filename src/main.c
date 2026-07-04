@@ -11,7 +11,6 @@
 #include "macros.h"
 
 char *host_name;
-char *cwd;
 
 void prompt(char *command) {
     char *raw_cwd = get_cwd();
