@@ -38,13 +38,12 @@ void handle_command(char command[], char *command_tokens[]) {
     if (strcmp(command_tokens[0], "list") == 0) {
         if (command_tokens[1] == NULL) {
             list_directory(".");
-            return;
+        } else {
+            list_directory(command_tokens[1]);
         }
-        
-        list_directory(command_tokens[0]);
         return;
     }
-
+    
     if (strcmp(command_tokens[0], "read") == 0) {
         if (command_tokens[1] == NULL) {
             printf("read: missing filename\n");
