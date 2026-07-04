@@ -95,11 +95,19 @@ void handle_command(char command[], char *command_tokens[]) {
             printf("print: missing text\n");
             return;
         }
+    
+        for (int i = 1; command_tokens[i] != NULL; i++) {
+            printf("%s", command_tokens[i]);
+    
+            if (command_tokens[i + 1] != NULL) {
+                printf(" ");
+            }
+        }
 
-        printf("%s\n", command_tokens[1]);
+        printf("\n");
         return;
     }
-
+    
     printf("shell: command not found: %s\n", command_tokens[0]);
 }
 
