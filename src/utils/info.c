@@ -3,7 +3,7 @@
 #include "macros.h"
 
 void display_info(){
-	printf("\033[32m=============== Shell Info ===============\033[0m\n");
+	printf("Shell Info\n");
 	
 	printf("\n");
 	
