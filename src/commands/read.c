@@ -1,20 +1,23 @@
 #include <stdio.h>
 #include <errno.h>
+
 #include "read.h"
 
-void read_file(char *filename){
-	FILE* fp = fopen(filename, "r");
-	if(fp == NULL){
-		perror("fopen");
-		return;
-	}
+void read_file(char *filename) {
+    FILE *fp = fopen(filename, "r");
 
-	char ch;
+    if (fp == NULL) {
+        perror("fopen");
+        return;
+    }
 
-	while((ch = fgetc(fp)) != EOF){
-		printf("%c", ch);
-	}
+    char ch;
+	
+    while ((ch = fgetc(fp)) != EOF) {
+        printf("%c", ch);
+    }
 
-	printf("\n");
+    printf("\n");
 
+    fclose(fp);
 }
