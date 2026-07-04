@@ -1,88 +1,44 @@
-# Rumi
+#!/bin/bash
 
-## Overview
+set -e  # Exit immediately if a command fails
 
-Rumi is a minimal shell created using C and C++ designed for Unix-like platforms. It provides a simple command-line interface with essential shell functionalities, aiming to be lightweight and easy to extend.
+# Variables
+REPO_URL="https://github.com/bokshi-gh/shell.git"
+TEMP_DIR="/tmp/shell_build_$$"  # Unique temporary directory
+SRC_BIN="./dist/bin/shell"
+DEST_BIN="/usr/bin/shell"
 
-## Features
+echo "Creating temporary directory: $TEMP_DIR"
+mkdir -p "$TEMP_DIR"
 
-Rumi is a lightweight custom shell designed with core Unix-like functionality in mind. It provides:
+echo "Cloning repository into temporary directory..."
+git clone "$REPO_URL" "$TEMP_DIR"
 
-- Command support for file and folder management
-- Utilities for navigation
-- Built-in features for process management
-- Commands for network related task
-- Clean, extensible codebase ideal for learning or experimentation
-> Rumi is an independent shell implementation that uses the same underlying Unix system calls as traditional shells like Bash but is built entirely from scratch.
+# Change into the temporary repository
+cd "$TEMP_DIR"
 
-## Getting Started
-
-### Platforms
-
-This shell supports the following platforms:
-
-- Linux
-- macOS
-- Unix-like systems
-
-### Requirements
-
-- C and C++ compiler (e.g., gcc, clang)
-- CMake 3.28.3
-- Standard Unix development environment
-
-### Installation
-
-1. **Clone the repository:**
-    ```sh
-    git clone https://github.com/devrajeshthapa/shell.git
-    cd shell
-    ```
-
-2. **Build and install using the provided script:**
-    ```sh
+# Run the build script
+if [ -f "./scripts/build.sh" ]; then
+    echo "Running build script..."
+    chmod +x ./scripts/build.sh
     ./scripts/build.sh
-    ```
-    > Note: This script handles building and installing the project automatically.
+else
+    echo "Build script not found!"
+    exit 1
+fi
 
-## Configuration
+# Copy the built binary to /usr/bin
+if [ -f "$SRC_BIN" ]; then
+    echo "Copying $SRC_BIN to $DEST_BIN (requires sudo)"
+    sudo cp "$SRC_BIN" "$DEST_BIN"
+    sudo chmod +x "$DEST_BIN"
+    echo "Installation complete!"
+else
+    echo "Built binary not found at $SRC_BIN"
+    exit 1
+fi
 
-Since CMake installs the project binaries in the `dist/bin` directory at the project root, you may want to add this directory to your PATH environment variable to easily run the shell from anywhere:
-
-Add the below code snippet to your shell configuration file (e.g., ~/.bashrc or ~/.zshrc) to make it persistent.
-```sh
-export PATH="$<path_to_project_directory>/dist/bin:$PATH"
-```
-
-Reload your bashrc
-```sh
-source ~/.bashrc
-```
-
-## Usage
-
-- Run the shell by executing:
-    ```sh
-    rumi
-    ```
-- Inside the shell, enter commands as you would in a typical Unix shell.
-
-- Example:
-    ```sh
-    ┌──(<user_name>@<host_name>)-[<current_working_directory>]
-    └─➤ list
-    file1 file2 file3 file3 file4 file5
-    ```
-
-- Guide
-  ```sh
-  rumi -g, --guide
-  ```
-
-## Contributing
-
-Contributions are welcome! Please fork the repo, make changes, and submit pull requests. Open issues for bugs or feature requests.
-
-## License
-
-This project is licensed under the "GNU General Public License v3.0" - see the [LICENSE](LICENSE) file for details.
+# Cleanup
+cd /
+rm -rf "$TEMP_DIR"
+echo "Temporary directory removed: $TEMP_DIR"
