@@ -6,6 +6,6 @@ set(CMAKE_C_STANDARD 11)
 
 include_directories(include)
 
-add_executable(shell src/main.c src/argument_handler.c src/command_handler.c src/command_parser.c src/utils/info.c src/utils/guide.c src/commands/list.c src/commands/newfile.c src/commands/newdir.c src/commands/delfile.c src/commands/read.c src/commands/goto.c src/commands/deldir.c)
+add_executable(shell src/* src/utils/*)
 
-install(TARGETS shell RUNTIME DESTINATION bin)
+install(TARGETS shell RUNTIME DESTINATION)
