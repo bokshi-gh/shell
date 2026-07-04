@@ -7,13 +7,8 @@ set(CMAKE_C_STANDARD_REQUIRED ON)
 
 include_directories(include)
 
-file(GLOB_RECURSE SOURCES
-    src/*.c
-    src/utils/*.c
-)
+file(GLOB_RECURSE SOURCES src/*.c)
 
 add_executable(shell ${SOURCES})
 
-install(TARGETS shell
-    RUNTIME DESTINATION bin
-)
+install(TARGETS shell RUNTIME DESTINATION bin)
