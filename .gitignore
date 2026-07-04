@@ -1,7 +1,3 @@
-# Executables
-*.out
-*.exe
-
 # Build
 build/
 
