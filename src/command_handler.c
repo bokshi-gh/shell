@@ -31,7 +31,9 @@ void handle_command(char command[], char *command_tokens[]) {
             return;
         }
         
-        change_directory(expand_path(command_tokens[1]));
+        char *path = expand_path(command_tokens[1]);
+        change_directory(path);
+        free(path);
         return;
     }
 
@@ -39,7 +41,9 @@ void handle_command(char command[], char *command_tokens[]) {
         if (command_tokens[1] == NULL) {
             list_directory(".");
         } else {
-            list_directory(expand_path(command_tokens[1]));
+            char *path = expand_path(command_tokens[1]);
+            list_directory(path);
+            free(path);
         }
         return;
     }
@@ -50,7 +54,9 @@ void handle_command(char command[], char *command_tokens[]) {
             return;
         }
 
-        read_file(expand_path(command_tokens[1]));
+        char *path = expand_path(command_tokens[1]);
+        read_file(path);
+        free(path);
         return;
     }
 
@@ -60,7 +66,9 @@ void handle_command(char command[], char *command_tokens[]) {
             return;
         }
 
-        create_file(expand_path(command_tokens[1]));
+        char *path = expand_path(command_tokens[1]);
+        create_file(path);
+        free(path);
         return;
     }
 
@@ -70,7 +78,9 @@ void handle_command(char command[], char *command_tokens[]) {
             return;
         }
 
-        create_directory(expand_path(command_tokens[1]));
+        char *path = expand_path(command_tokens[1]);
+        create_directory(path);
+        free(path);
         return;
     }
 
@@ -80,7 +90,9 @@ void handle_command(char command[], char *command_tokens[]) {
             return;
         }
 
-        delete_file(expand_path(command_tokens[1]));
+        char *path = expand_path(command_tokens[1]);
+        delete_file(path);
+        free(path);
         return;
     }
 
@@ -90,7 +102,9 @@ void handle_command(char command[], char *command_tokens[]) {
             return;
         }
 
-        delete_directory(expand_path(command_tokens[1]));
+        char *path = expand_path(command_tokens[1]);
+        delete_directory(path);
+        free(path);
         return;
     }
 
