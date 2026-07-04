@@ -9,7 +9,7 @@ void list_directory(char *path) {
     DIR *d = opendir(path);
 
     if (d == NULL) {
-        perror("opendir failed");
+        perror("opendir");
         return;
     }
 
