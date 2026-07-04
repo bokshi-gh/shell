@@ -4,44 +4,46 @@
 #include <dirent.h>
 #include <errno.h>
 #include <string.h>
+
 #include "deldir.h"
 
-void delete_directory(char *directory_name){
-	DIR* d = opendir(directory_name);
-	struct dirent *p;
+void delete_directory(char *directory_name) {
+    DIR *d = opendir(directory_name);
 
-	while((p = readdir(d)) != NULL){
-		char *buff;
-		size_t len;
+    if (d == NULL) {
+        perror("opendir");
+        return;
+    }
 
-		if (!strcmp(p->d_name, ".") || !strcmp(p->d_name, "..")) {
-			continue;
-		}
+    struct dirent *p;
 
-		len = strlen(directory_name) + strlen(p->d_name)+2;
-		buff = malloc(len);
+    while ((p = readdir(d)) != NULL) {
+        if (!strcmp(p->d_name, ".") || !strcmp(p->d_name, "..")) {
+            continue;
+        }
 
-		if (!buff) {
-			perror("malloc");
-			break;
-		}
+        size_t len = strlen(directory_name) + strlen(p->d_name) + 2;
+        char *buff = malloc(len);
 
-		snprintf(buff, len, "%s/%s", directory_name, p->d_name);
+        if (!buff) {
+            perror("malloc");
+            continue;
+        }
 
-		if(p->d_type == DT_DIR){
-			delete_directory(buff);
-		}else{
-			unlink(buff);
-		}
+        snprintf(buff, len, "%s/%s", directory_name, p->d_name);
 
-		free(buff);
-		buff = NULL;
-	}
+        if (p->d_type == DT_DIR) {
+            delete_directory(buff);
+        } else {
+            unlink(buff);
+        }
 
-	closedir(d);
+        free(buff);
+    }
 
-	if (rmdir(directory_name) != 0) {
-		perror("rmdir");
-	}
+    closedir(d);
 
+    if (rmdir(directory_name) != 0) {
+        perror("rmdir");
+    }
 }
