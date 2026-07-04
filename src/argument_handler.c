@@ -4,8 +4,7 @@
 
 #include "argument_handler.h"
 #include "macros.h"
-#include "info.h"
-#include "guide.h"
+#include "utils.h"
 
 void handle_argument(int argc, char *argv[]) {
     if (argc == 2) {
