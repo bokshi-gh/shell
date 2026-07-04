@@ -39,11 +39,11 @@ A tiny shell written in C.
    sudo cmake --install build
    ```
 
-By default, the executable is installed to:
-
-```text
-/usr/local/bin/shell
-```
+   By default, the executable is installed to:
+   
+   ```text
+   /usr/local/bin/shell
+   ```
 
 ### Usage
 
