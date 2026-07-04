@@ -52,7 +52,6 @@ void prompt(char *command){
 }
 
 int main(int argc, char *argv[]){
-
 	if(argc != 1){
 		handle_argument(argc, argv);
 		exit(0);
@@ -78,7 +77,6 @@ int main(int argc, char *argv[]){
 		parse_command(command, command_tokens);
 		handle_command(command, command_tokens);
 	}
-
-	// TODO: call cleanup() function before program exist to avoid memory leaks
+	
 	return 0;
 }
