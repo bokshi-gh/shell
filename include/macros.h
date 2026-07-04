@@ -2,8 +2,8 @@
 
 #define VERSION "v1.0.0"
 #define AUTHOR "Rajesh Thapa (bokshi)"
-#define GITHUB "https://github.com/devrajeshthapa/shell.git"
-#define DESC "A Tiny Shell Written in C"
+#define GITHUB "https://github.com/bokshi-gh/shell.git"
+#define DESC "A tiny shell written in C."
 #define LICENSE "GNU General Public License v3.0"
 
 #define MAX_COMMAND_LENGTH 4096
