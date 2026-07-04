@@ -6,6 +6,7 @@
 #include <errno.h>
 #include <pwd.h>
 #include <string.h>
+
 #include "macros.h"
 #include "argument_handler.h"
 #include "command_parser.h"
