@@ -2,8 +2,8 @@
 
 A tiny shell written in C.
 
-> [!Note]
-> It is compatible only with Unix-like operating systems.
+> [!NOTE]
+> Shell is compatible only with Unix-like operating systems.
 
 ## Getting Started
 
@@ -14,16 +14,6 @@ A tiny shell written in C.
 
 ### Installation
 
-#### Option 1: Install using the installer script
-
-Install shell with a single command:
-
-```sh
-curl -fsSL https://raw.githubusercontent.com/bokshi-gh/shell/main/scripts/install.sh | bash
-```
-
-#### Option 2: Build locally
-
 1. **Clone the repository:**
 
    ```sh
@@ -31,21 +21,31 @@ curl -fsSL https://raw.githubusercontent.com/bokshi-gh/shell/main/scripts/instal
    cd shell
    ```
 
-2. **Build the project:**
+2. **Configure the project:**
 
    ```sh
-   ./scripts/build.sh
+   cmake -B build
    ```
 
-3. **Run the generated binary:**
+3. **Build the project:**
 
-   The executable is generated in:
-
-   ```text
-   dist/bin/
+   ```sh
+   cmake --build build
    ```
 
-## Usage
+4. **Install the executable:**
+
+   ```sh
+   sudo cmake --install build
+   ```
+
+By default, the executable is installed to:
+
+```text
+/usr/local/bin/shell
+```
+
+### Usage
 
 Run the shell:
 
