@@ -26,11 +26,6 @@ void handle_command(char command[], char *command_tokens[]) {
     }
 
     if (strcmp(command_tokens[0], "goto") == 0) {
-        if (command_tokens[1] == NULL) {
-            printf("goto: missing pathname\n");
-            return;
-        }
-
         change_directory(command_tokens[1]);
         return;
     }
