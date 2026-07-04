@@ -4,7 +4,6 @@
 #define AUTHOR "Rajesh Thapa (bokshi)"
 #define GITHUB "https://github.com/bokshi-gh/shell.git"
 #define DESC "A tiny shell written in C."
-#define LICENSE "GNU General Public License v3.0"
 
 #define MAX_COMMAND_LENGTH 4096
 #define CLEAR_TERMINAL() printf("\033[2J\033[H")
