@@ -4,8 +4,8 @@
 #include "macros.h"
 #include "list.h"
 
-void list_directory(){
-	DIR *d = opendir(".");
+void list_directory(char *path){
+	DIR *d = opendir(char *path);
 	struct dirent* entry;
 
 	while((entry = readdir(d)) != NULL){
