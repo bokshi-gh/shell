@@ -1,84 +1,93 @@
-#include <stdio.h>
-#include <stdbool.h>
-#include <unistd.h>
-#include <stdlib.h>
-#include <limits.h>
 #include <errno.h>
+#include <limits.h>
 #include <pwd.h>
+#include <stdbool.h>
+#include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
+#include <unistd.h>
 
-#include "macros.h"
 #include "argument_handler.h"
-#include "command_parser.h"
 #include "command_handler.h"
+#include "command_parser.h"
+#include "macros.h"
 
 char *user_name;
 char *host_name;
 char *cwd;
 
-void get_user_name() {
-	struct passwd *pwd;
-	pwd = getpwuid(getuid());
-	
-	if (pwd == NULL) {
-		perror("pwd");
-		exit(1);
-	};
+void get_user_name(void) {
+    struct passwd *pwd = getpwuid(getuid());
 
-	user_name = pwd->pw_name;
+    if (pwd == NULL) {
+        perror("getpwuid");
+        exit(EXIT_FAILURE);
+    }
+
+    user_name = pwd->pw_name;
 }
 
-void get_host_name() {
-	if (gethostname(host_name, HOST_NAME_MAX) == -1) {
-		perror("hostname");
-		exit(1);
-	}
+void get_host_name(void) {
+    if (gethostname(host_name, HOST_NAME_MAX) == -1) {
+        perror("gethostname");
+        exit(EXIT_FAILURE);
+    }
 }
 
-void get_cwd() {
-	if ((getcwd(cwd, PATH_MAX)) == NULL) {
-		perror("cwd");
-		exit(1);
-	}
+void get_cwd(void) {
+    if (getcwd(cwd, PATH_MAX) == NULL) {
+        perror("getcwd");
+        exit(EXIT_FAILURE);
+    }
 }
 
 void prompt(char *command) {
-	printf("%s┌──(%s%s%s@%s%s%s)-[%s%s%s]\n└─%s%s➤%s ", GREEN, RESET, BLUE, user_name, host_name, RESET, GREEN, RESET, cwd, GREEN, RESET, BLUE, RESET);
+    printf(
+        "%s%s@%s%s:%s%s%s$ ",
+        GREEN, user_name, host_name, RESET,
+        BLUE, cwd, RESET
+    );
 
-	if ((fgets(command, MAX_COMMAND_LENGTH, stdin)) == NULL) {
-		perror("fgets");
-		exit(1);
-	}
-	
-	command[strcspn(command, "\n")] = '\0'; // Remove trailing newline or whitespace
+    if (fgets(command, MAX_COMMAND_LENGTH, stdin) == NULL) {
+        perror("fgets");
+        exit(EXIT_FAILURE);
+    }
+
+    command[strcspn(command, "\n")] = '\0';
 }
 
 int main(int argc, char *argv[]) {
-	if (argc != 1) {
-		handle_argument(argc, argv);
-		exit(0);
-	}
+    if (argc != 1) {
+        handle_argument(argc, argv);
+        return 0;
+    }
 
-	char command[MAX_COMMAND_LENGTH];
-	char *command_tokens[256];
+    char command[MAX_COMMAND_LENGTH];
+    char *command_tokens[256];
 
-	get_user_name();
-	if((host_name = malloc(HOST_NAME_MAX)) == NULL){ 
-		perror("malloc");
-		exit(1);
-	}
-	get_host_name();
-	if((cwd = malloc(PATH_MAX)) == NULL){
-		perror("malloc");
-		exit(1);
-	}
-	get_cwd();
+    get_user_name();
 
-	while(true){
-		prompt(command);
-		parse_command(command, command_tokens);
-		handle_command(command, command_tokens);
-	}
-	
-	return 0;
+    host_name = malloc(HOST_NAME_MAX);
+    cwd = malloc(PATH_MAX);
+
+    if (host_name == NULL || cwd == NULL) {
+        perror("malloc");
+        free(host_name);
+        free(cwd);
+        return EXIT_FAILURE;
+    }
+
+    get_host_name();
+    get_cwd();
+
+    while (true) {
+        prompt(command);
+        parse_command(command, command_tokens);
+        handle_command(command, command_tokens);
+    }
+
+    free(host_name);
+    free(cwd);
+
+    return EXIT_SUCCESS;
 }
