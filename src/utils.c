@@ -37,6 +37,26 @@ void display_info(){
 	printf("GitHub: %s\n", GITHUB);
 }
 
+char* format_cwd(char *cwd) {
+    char *home = getenv("HOME");
+
+    if (home == NULL) {
+        return cwd; // fallback
+    }
+
+    size_t home_len = strlen(home);
+
+    if (strncmp(cwd, home, home_len) == 0) {
+        // allocate new string: "~" + rest of path
+        char *result = malloc(PATH_MAX);
+
+        snprintf(result, PATH_MAX, "~%s", cwd + home_len);
+        return result;
+    }
+
+    return cwd;
+}
+
 char* expand_path(const char *path) {
     if (path[0] != '~') {
         return strdup(path);  // no expansion needed
