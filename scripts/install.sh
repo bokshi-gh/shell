@@ -1,44 +1,58 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-set -e  # Exit immediately if a command fails
+set -euo pipefail
 
-# Variables
+# Configuration
 REPO_URL="https://github.com/bokshi-gh/shell.git"
-TEMP_DIR="/tmp/shell_build_$$"  # Unique temporary directory
-SRC_BIN="./dist/bin/shell"
-DEST_BIN="/usr/bin/shell"
+TEMP_DIR="$(mktemp -d)"
+DEST_BIN="/usr/local/bin/shell"
 
-echo "Creating temporary directory: $TEMP_DIR"
-mkdir -p "$TEMP_DIR"
+cleanup() {
+    rm -rf "$TEMP_DIR"
+}
 
-echo "Cloning repository into temporary directory..."
-git clone "$REPO_URL" "$TEMP_DIR"
+trap cleanup EXIT
 
-# Change into the temporary repository
+echo "Checking dependencies..."
+
+for cmd in git gcc cmake sudo; do
+    if ! command -v "$cmd" >/dev/null 2>&1; then
+        echo "Error: '$cmd' is required but is not installed."
+        exit 1
+    fi
+done
+
+echo "Cloning Shell..."
+git clone --depth 1 "$REPO_URL" "$TEMP_DIR"
+
 cd "$TEMP_DIR"
 
-# Run the build script
-if [ -f "./scripts/build.sh" ]; then
-    echo "Running build script..."
-    chmod +x ./scripts/build.sh
-    ./scripts/build.sh
-else
-    echo "Build script not found!"
+if [ ! -f "./scripts/build.sh" ]; then
+    echo "Error: scripts/build.sh not found."
     exit 1
 fi
 
-# Copy the built binary to /usr/bin
-if [ -f "$SRC_BIN" ]; then
-    echo "Copying $SRC_BIN to $DEST_BIN (requires sudo)"
-    sudo cp "$SRC_BIN" "$DEST_BIN"
-    sudo chmod +x "$DEST_BIN"
-    echo "Installation complete!"
-else
-    echo "Built binary not found at $SRC_BIN"
+chmod +x ./scripts/build.sh
+
+echo "Building..."
+./scripts/build.sh
+
+SRC_BIN="./dist/bin/shell"
+
+if [ ! -f "$SRC_BIN" ]; then
+    echo "Error: Build succeeded but binary was not found at $SRC_BIN."
     exit 1
 fi
 
-# Cleanup
-cd /
-rm -rf "$TEMP_DIR"
-echo "Temporary directory removed: $TEMP_DIR"
+echo "Installing to $DEST_BIN..."
+sudo install -m 755 "$SRC_BIN" "$DEST_BIN"
+
+echo
+echo "Shell has been installed successfully!"
+echo
+echo "Run it with:"
+echo "  shell"
+echo
+echo "For the built-in guide:"
+echo "  shell --guide"
+```
