@@ -11,6 +11,7 @@
 #include "command_handler.h"
 #include "command_parser.h"
 #include "macros.h"
+#include "utils.h"
 
 char *user_name;
 char *host_name;
@@ -43,12 +44,18 @@ void get_cwd(void) {
 
 void prompt(char *command) {
     get_cwd();
-    
+
+    char *display_path = format_cwd(cwd);
+
     printf(
         "%s%s@%s%s:%s%s%s$ ",
         GREEN, user_name, host_name, RESET,
-        BLUE, cwd, RESET
+        BLUE, display_path, RESET
     );
+
+    if (display_path != cwd) {
+        free(display_path);
+    }
 
     if (fgets(command, MAX_COMMAND_LENGTH, stdin) == NULL) {
         perror("fgets");
