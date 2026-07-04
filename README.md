@@ -1,51 +1,66 @@
-# Rumi
+# Shell
 
-Rumi is a minimal shell created using C.
+A tiny shell written in C.
+
+> [!Note]
+> It is compatible only with Unix-like operating systems.
 
 ## Getting Started
 
-### Platforms
-
-This shell supports the following platforms:
-
-- Linux
-- macOS
-- Unix-like systems
-
 ### Requirements
 
-- GNU GCC
-- CMake 3.28.3
+* GNU GCC
+* CMake 3.28.3 or later
 
 ### Installation
 
+#### Option 1: Install using the installer script
+
+Install shell with a single command:
+
+```sh
+curl -fsSL https://raw.githubusercontent.com/bokshi-gh/shell/main/scripts/install.sh | bash
+```
+
+#### Option 2: Build locally
+
 1. **Clone the repository:**
-    ```sh
-    git clone https://github.com/devrajeshthapa/shell.git
-    cd shell
-    ```
 
-2. **Build and install using the provided script:**
-    ```sh
-    ./scripts/build.sh
-    ```
+   ```sh
+   git clone https://github.com/bokshi-gh/shell.git
+   cd shell
+   ```
 
-### Usage
+2. **Build the project:**
 
-- Run the shell by executing:
-    ```sh
-    rumi
-    ```
-- Inside the shell, enter commands as you would in a typical Unix shell.
+   ```sh
+   ./scripts/build.sh
+   ```
 
-- Example:
-    ```sh
-    ┌──(<user_name>@<host_name>)-[<current_working_directory>]
-    └─➤ list
-    file1 file2 file3 file3 file4 file5
-    ```
+3. **Run the generated binary:**
 
-- Guide
-  ```sh
-  rumi -g, --guide
-  ```
+   The executable is generated in:
+
+   ```text
+   dist/bin/
+   ```
+
+## Usage
+
+Run the shell:
+
+```sh
+shell
+```
+
+Display the built-in guide:
+
+```sh
+shell -g
+```
+
+or
+
+```sh
+shell --guide
+```
