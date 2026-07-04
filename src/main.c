@@ -78,12 +78,11 @@ int main(int argc, char *argv[]) {
 
     get_host_name();
 
-    char command[256];
-    char *command_tokens[256];
+    char command[MAX_COMMAND_LENGTH];
     while (true) {
         prompt(command);
-        parse_command(command, command_tokens);
-        handle_command(command, command_tokens);
+        parse_command(command);
+        handle_command(command);
     }
 
     free(host_name);
