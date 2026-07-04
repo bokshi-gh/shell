@@ -1,3 +1,3 @@
 #pragma once
 
-void list_directory();
+void list_directory(char *path);
