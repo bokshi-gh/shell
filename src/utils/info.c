@@ -11,6 +11,5 @@ void display_info(){
 	printf("Version: %s\n", VERSION);
 	printf("Description: %s\n", DESC);
 	printf("Author: %s\n", AUTHOR);
-	printf("License: %s\n", LICENSE);
 	printf("GitHub: %s\n", GITHUB);
 }
