@@ -40,17 +40,24 @@ void display_info(){
 char* format_cwd(char *cwd) {
     char *home = getenv("HOME");
 
-    if (home == NULL) {
-        return cwd; // fallback
+    if (home == NULL || cwd == NULL) {
+        return cwd;
     }
 
     size_t home_len = strlen(home);
 
     if (strncmp(cwd, home, home_len) == 0) {
-        // allocate new string: "~" + rest of path
-        char *result = malloc(PATH_MAX);
 
-        snprintf(result, PATH_MAX, "~%s", cwd + home_len);
+        // "~" + remaining path + null terminator
+        size_t new_len = strlen(cwd + home_len) + 2;
+
+        char *result = malloc(new_len);
+        if (result == NULL) {
+            return cwd; // fallback
+        }
+
+        snprintf(result, new_len, "~%s", cwd + home_len);
+
         return result;
     }
 
