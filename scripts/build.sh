@@ -5,4 +5,4 @@ cd build
 
 cmake ..
 cmake --build .
-cmake --install . --prefix ../dist
+cmake --install . --prefix ../target
