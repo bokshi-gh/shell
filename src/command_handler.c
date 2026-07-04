@@ -5,6 +5,7 @@
 #include "argument_handler.h"
 #include "command_handler.h"
 #include "macros.h"
+#include "utils.c"
 #include "list.h"
 #include "newfile.h"
 #include "newdir.h"
