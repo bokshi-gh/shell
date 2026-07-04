@@ -19,7 +19,6 @@ void handle_command(char command[], char *command_tokens[]) {
 		return;
 	}
 	else if ((strcmp(command_tokens[0], "esc") == 0) && command_tokens[1] == NULL) {
-		// TODO: Add cleanup() if needed before exiting
 		exit(0);
 	}
 	else if ((strcmp(command_tokens[0], "rumi") == 0)) {
