@@ -112,7 +112,7 @@ void handle_command(char command[], char *command_tokens[]) {
         return;
     }
     
-    printf("shell: command not found: %s\n", command_tokens[0]);
+    printf("shell: %s: command not found\n", command_tokens[0]);
 }
 
 /*
