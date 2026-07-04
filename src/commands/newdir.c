@@ -9,6 +9,3 @@ void create_directory(char *directory_name){
 		return;
 	}
 }
-
-// TODO:
-// ==> Same as newfile.c
