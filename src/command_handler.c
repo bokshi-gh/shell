@@ -36,7 +36,12 @@ void handle_command(char command[], char *command_tokens[]) {
     }
 
     if (strcmp(command_tokens[0], "list") == 0) {
-        list_directory();
+        if (command_tokens[1] == NULL) {
+            list_directory(".");
+            return;
+        }
+        
+        list_directory(command_tokens[0]);
         return;
     }
 
