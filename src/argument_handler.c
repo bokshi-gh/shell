@@ -16,7 +16,7 @@ void handle_argument(int argc, char *argv[]) {
         } else if ((strcmp(argv[1], "-i") == 0) || (strcmp(argv[1], "--info") == 0)) {
             display_info();
         } else {
-            printf("shell: Invalid argument \"%s\"\n", argv[1]);
+            printf("shell: Invalid argument '%s'\n", argv[1]);
             printf("Try: shell -g or shell --guide\n");
         }
 
