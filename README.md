@@ -1,19 +1,6 @@
 # Rumi
 
-## Overview
-
-Rumi is a minimal shell created using C and C++ designed for Unix-like platforms. It provides a simple command-line interface with essential shell functionalities, aiming to be lightweight and easy to extend.
-
-## Features
-
-Rumi is a lightweight custom shell designed with core Unix-like functionality in mind. It provides:
-
-- Command support for file and folder management
-- Utilities for navigation
-- Built-in features for process management
-- Commands for network related task
-- Clean, extensible codebase ideal for learning or experimentation
-> Rumi is an independent shell implementation that uses the same underlying Unix system calls as traditional shells like Bash but is built entirely from scratch.
+Rumi is a minimal shell created using C.
 
 ## Getting Started
 
@@ -27,9 +14,8 @@ This shell supports the following platforms:
 
 ### Requirements
 
-- C and C++ compiler (e.g., gcc, clang)
+- GNU GCC
 - CMake 3.28.3
-- Standard Unix development environment
 
 ### Installation
 
@@ -43,23 +29,8 @@ This shell supports the following platforms:
     ```sh
     ./scripts/build.sh
     ```
-    > Note: This script handles building and installing the project automatically.
 
-## Configuration
-
-Since CMake installs the project binaries in the `dist/bin` directory at the project root, you may want to add this directory to your PATH environment variable to easily run the shell from anywhere:
-
-Add the below code snippet to your shell configuration file (e.g., ~/.bashrc or ~/.zshrc) to make it persistent.
-```sh
-export PATH="$<path_to_project_directory>/dist/bin:$PATH"
-```
-
-Reload your bashrc
-```sh
-source ~/.bashrc
-```
-
-## Usage
+### Usage
 
 - Run the shell by executing:
     ```sh
@@ -78,11 +49,3 @@ source ~/.bashrc
   ```sh
   rumi -g, --guide
   ```
-
-## Contributing
-
-Contributions are welcome! Please fork the repo, make changes, and submit pull requests. Open issues for bugs or feature requests.
-
-## License
-
-This project is licensed under the "GNU General Public License v3.0" - see the [LICENSE](LICENSE) file for details.
