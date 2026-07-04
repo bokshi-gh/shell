@@ -31,7 +31,7 @@ void handle_command(char command[], char *command_tokens[]) {
             return;
         }
         
-        change_directory(command_tokens[1]);
+        change_directory(expand_path(command_tokens[1]));
         return;
     }
 
@@ -39,7 +39,7 @@ void handle_command(char command[], char *command_tokens[]) {
         if (command_tokens[1] == NULL) {
             list_directory(".");
         } else {
-            list_directory(command_tokens[1]);
+            list_directory(expand_path(command_tokens[1]));
         }
         return;
     }
@@ -50,7 +50,7 @@ void handle_command(char command[], char *command_tokens[]) {
             return;
         }
 
-        read_file(command_tokens[1]);
+        read_file(expand_path(command_tokens[1]));
         return;
     }
 
@@ -60,7 +60,7 @@ void handle_command(char command[], char *command_tokens[]) {
             return;
         }
 
-        create_file(command_tokens[1]);
+        create_file(expand_path(command_tokens[1]));
         return;
     }
 
@@ -70,7 +70,7 @@ void handle_command(char command[], char *command_tokens[]) {
             return;
         }
 
-        create_directory(command_tokens[1]);
+        create_directory(expand_path(command_tokens[1]));
         return;
     }
 
@@ -80,7 +80,7 @@ void handle_command(char command[], char *command_tokens[]) {
             return;
         }
 
-        delete_file(command_tokens[1]);
+        delete_file(expand_path(command_tokens[1]));
         return;
     }
 
@@ -90,7 +90,7 @@ void handle_command(char command[], char *command_tokens[]) {
             return;
         }
 
-        delete_directory(command_tokens[1]);
+        delete_directory(expand_path(command_tokens[1]));
         return;
     }
 
