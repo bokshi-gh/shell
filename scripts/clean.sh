@@ -9,7 +9,6 @@ echo -e "${GREEN}***Cleaning build and dist directories***${NC}"
 
 rm -rf build dist
 
-echo -e "${GREEN}***Clean complete***${NC}"
+echo -e "${GREEN}***Cleaning complete***${NC}"
 
 echo ""
-
