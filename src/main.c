@@ -16,10 +16,11 @@ char *user_name;
 char *host_name;
 char *cwd;
 
-void get_user_name(){
+void get_user_name() {
 	struct passwd *pwd;
 	pwd = getpwuid(getuid());
-	if(pwd == NULL){
+	
+	if (pwd == NULL) {
 		perror("pwd");
 		exit(1);
 	};
@@ -27,32 +28,33 @@ void get_user_name(){
 	user_name = pwd->pw_name;
 }
 
-void get_host_name(){
-	if(gethostname(host_name, HOST_NAME_MAX) == -1){
+void get_host_name() {
+	if (gethostname(host_name, HOST_NAME_MAX) == -1) {
 		perror("hostname");
 		exit(1);
 	}
 }
 
-void get_cwd(){
-	if((getcwd(cwd, PATH_MAX)) == NULL){
+void get_cwd() {
+	if ((getcwd(cwd, PATH_MAX)) == NULL) {
 		perror("cwd");
 		exit(1);
 	}
 }
 
-void prompt(char *command){
+void prompt(char *command) {
 	printf("%s┌──(%s%s%s@%s%s%s)-[%s%s%s]\n└─%s%s➤%s ", GREEN, RESET, BLUE, user_name, host_name, RESET, GREEN, RESET, cwd, GREEN, RESET, BLUE, RESET);
 
-	if((fgets(command, MAX_COMMAND_LENGTH, stdin)) == NULL){
+	if ((fgets(command, MAX_COMMAND_LENGTH, stdin)) == NULL) {
 		perror("fgets");
 		exit(1);
 	}
+	
 	command[strcspn(command, "\n")] = '\0'; // Remove trailing newline or whitespace
 }
 
-int main(int argc, char *argv[]){
-	if(argc != 1){
+int main(int argc, char *argv[]) {
+	if (argc != 1) {
 		handle_argument(argc, argv);
 		exit(0);
 	}
