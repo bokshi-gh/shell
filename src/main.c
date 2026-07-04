@@ -80,6 +80,7 @@ int main(int argc, char *argv[]) {
 
     char command[MAX_COMMAND_LENGTH];
     char *command_tokens[256]
+    
     while (true) {
         prompt(command);
         parse_command(command, command_tokens);
