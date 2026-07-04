@@ -42,6 +42,8 @@ void get_cwd(void) {
 }
 
 void prompt(char *command) {
+    get_cwd();
+    
     printf(
         "%s%s@%s%s:%s%s%s$ ",
         GREEN, user_name, host_name, RESET,
@@ -62,9 +64,6 @@ int main(int argc, char *argv[]) {
         return 0;
     }
 
-    char command[MAX_COMMAND_LENGTH];
-    char *command_tokens[256];
-
     get_user_name();
 
     host_name = malloc(HOST_NAME_MAX);
@@ -78,8 +77,9 @@ int main(int argc, char *argv[]) {
     }
 
     get_host_name();
-    get_cwd();
 
+    char command[MAX_COMMAND_LENGTH];
+    char *command_tokens[256];
     while (true) {
         prompt(command);
         parse_command(command, command_tokens);
