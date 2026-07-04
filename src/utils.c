@@ -1,10 +1,90 @@
 #include <limits.h>
-#include <stdio.h>
+#include <pwd.h>
+#include <unistd.h>
 #include <stdlib.h>
+#include <stdio.h>
 #include <string.h>
 
 #include "utils.h"
 #include "macros.h"
+
+char *user_name = NULL;
+
+void init_user_name(void) {
+    struct passwd *pwd = getpwuid(getuid());
+
+    if (!pwd) {
+        perror("getpwuid");
+        exit(EXIT_FAILURE);
+    }
+
+    user_name = pwd->pw_name;
+}
+
+void init_host_name(char *host_name) {
+    if (gethostname(host_name, HOST_NAME_MAX) == -1) {
+        perror("gethostname");
+        exit(EXIT_FAILURE);
+    }
+}
+
+char* get_cwd(void) {
+    char *cwd = getcwd(NULL, 0);
+
+    if (!cwd) {
+        perror("getcwd");
+        exit(EXIT_FAILURE);
+    }
+
+    return cwd;
+}
+
+char* format_cwd(char *cwd) {
+    char *home = getenv("HOME");
+
+    if (!home || !cwd) {
+        return cwd;
+    }
+
+    size_t home_len = strlen(home);
+
+    if (strncmp(cwd, home, home_len) == 0) {
+
+        size_t new_len = strlen(cwd + home_len) + 2;
+
+        char *result = malloc(new_len);
+
+        if (!result) return cwd;
+
+        snprintf(result, new_len, "~%s", cwd + home_len);
+
+        return result;
+    }
+
+    return cwd;
+}
+
+char* expand_path(const char *path) {
+    if (!path) return NULL;
+
+    if (path[0] != '~') {
+        return strdup(path);
+    }
+
+    char *home = getenv("HOME");
+
+    if (!home) return strdup(path);
+
+    size_t len = strlen(home) + strlen(path) + 1;
+
+    char *result = malloc(len);
+
+    if (!result) return NULL;
+
+    snprintf(result, len, "%s%s", home, path + 1);
+
+    return result;
+}
 
 void display_guide() {
     printf("Shell Guide\n\n");
@@ -36,37 +116,4 @@ void display_info(){
 	printf("Description: %s\n", DESC);
 	printf("Author: %s\n", AUTHOR);
 	printf("GitHub: %s\n", GITHUB);
-}
-
-char* format_cwd(char *cwd) {
-    char *home = getenv("HOME");
-
-    if (home == NULL) {
-        return cwd; // fallback
-    }
-
-    size_t home_len = strlen(home);
-
-    if (strncmp(cwd, home, home_len) == 0) {
-        // allocate new string: "~" + rest of path
-        char *result = malloc(PATH_MAX);
-
-        snprintf(result, PATH_MAX, "~%s", cwd + home_len);
-        return result;
-    }
-
-    return cwd;
-}
-
-char* expand_path(const char *path) {
-    if (path[0] != '~') {
-        return strdup(path);  // no expansion needed
-    }
-
-    char *home = getenv("HOME");
-
-    char *result = malloc(strlen(home) + strlen(path));
-    sprintf(result, "%s%s", home, path + 1);
-
-    return result;
 }

@@ -1,51 +1,21 @@
-#include <errno.h>
 #include <limits.h>
-#include <pwd.h>
-#include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 #include <string.h>
-#include <unistd.h>
 
-#include "argument_handler.h"
-#include "command_handler.h"
-#include "command_parser.h"
-#include "macros.h"
 #include "utils.h"
+#include "argument_handler.h"
+#include "command_parser.h"
+#include "command_handler.h"
+#include "macros.h"
 
-char *user_name;
 char *host_name;
 char *cwd;
 
-void get_user_name(void) {
-    struct passwd *pwd = getpwuid(getuid());
-
-    if (pwd == NULL) {
-        perror("getpwuid");
-        exit(EXIT_FAILURE);
-    }
-
-    user_name = pwd->pw_name;
-}
-
-void get_host_name(void) {
-    if (gethostname(host_name, HOST_NAME_MAX) == -1) {
-        perror("gethostname");
-        exit(EXIT_FAILURE);
-    }
-}
-
-void get_cwd(void) {
-    if (getcwd(cwd, PATH_MAX) == NULL) {
-        perror("getcwd");
-        exit(EXIT_FAILURE);
-    }
-}
-
 void prompt(char *command) {
-    get_cwd();
-
-    char *display_path = format_cwd(cwd);
+    char *raw_cwd = get_cwd();
+    char *display_path = format_cwd(raw_cwd);
 
     printf(
         "%s%s@%s%s:%s%s%s$ ",
@@ -53,9 +23,11 @@ void prompt(char *command) {
         BLUE, display_path, RESET
     );
 
-    if (display_path != cwd) {
+    if (display_path != raw_cwd) {
         free(display_path);
     }
+
+    free(raw_cwd);
 
     if (fgets(command, MAX_COMMAND_LENGTH, stdin) == NULL) {
         perror("fgets");
@@ -71,23 +43,16 @@ int main(int argc, char *argv[]) {
         return 0;
     }
 
-    get_user_name();
+    init_user_name();
 
     host_name = malloc(HOST_NAME_MAX);
-    cwd = malloc(PATH_MAX);
+    if (!host_name) return EXIT_FAILURE;
 
-    if (host_name == NULL || cwd == NULL) {
-        perror("malloc");
-        free(host_name);
-        free(cwd);
-        return EXIT_FAILURE;
-    }
-
-    get_host_name();
+    init_host_name(host_name);
 
     char command[MAX_COMMAND_LENGTH];
     char *command_tokens[256];
-    
+
     while (true) {
         prompt(command);
         parse_command(command, command_tokens);
@@ -95,7 +60,6 @@ int main(int argc, char *argv[]) {
     }
 
     free(host_name);
-    free(cwd);
 
     return EXIT_SUCCESS;
 }
