@@ -78,7 +78,7 @@ int main(int argc, char *argv[]) {
 
     get_host_name();
 
-    char command[MAX_COMMAND_LENGTH];
+    char command[256];
     char *command_tokens[256];
     while (true) {
         prompt(command);
