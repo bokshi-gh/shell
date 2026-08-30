@@ -4,6 +4,8 @@ A tiny shell written in C.
 
 > [!NOTE]
 > Shell is compatible only with Unix-like operating systems.
+> 
+> This shell does not perform actual program execution using system calls such as the `exec` family. It only parses CLI commands and calls the corresponding C functions.
 
 ## Getting Started
 
